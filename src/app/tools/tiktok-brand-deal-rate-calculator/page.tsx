@@ -14,7 +14,6 @@ import {
 } from 'lucide-react';
 import AdPlaceholder from '@/components/AdPlaceholder';
 import ToolStructuredData, { FaqItem } from '@/components/ToolStructuredData';
-import RelatedTools from '@/components/RelatedTools';
 import { calculateTikTokBrandDealRate } from '@/lib/tiktok-brand-deal-calculator';
 
 const TIKTOK_FAQS: FaqItem[] = [
@@ -263,7 +262,6 @@ export default function TikTokBrandDealRateCalculator() {
         </section>
 
         {/* Contextual internal links for SEO and discovery */}
-        <RelatedTools />
 
       </div>
     </div>

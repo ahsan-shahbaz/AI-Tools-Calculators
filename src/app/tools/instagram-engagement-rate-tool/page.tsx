@@ -14,7 +14,6 @@ import {
 } from 'lucide-react';
 import AdPlaceholder from '@/components/AdPlaceholder';
 import ToolStructuredData, { FaqItem } from '@/components/ToolStructuredData';
-import RelatedTools from '@/components/RelatedTools';
 import { calculateInstagramEngagementRate } from '@/lib/instagram-engagement-calculator';
 
 const INSTAGRAM_FAQS: FaqItem[] = [
@@ -250,7 +249,6 @@ export default function InstagramEngagementRateTool() {
         </section>
 
         {/* Contextual internal links for SEO and discovery */}
-        <RelatedTools />
 
       </div>
     </div>
