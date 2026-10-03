@@ -12,7 +12,7 @@ Use this brief as current project context when reviewing or improving the site. 
 
 ## Current Tool Catalog
 
-All 13 listed tools have a route and are marked live in `src/data/youtube-data.ts`. The homepage directory and sitemap use this catalog.
+All 18 listed tools have a route and are marked live in `src/data/youtube-data.ts`. The homepage directory and sitemap use this catalog.
 
 | Tool | Category | Route | Main behavior / implementation |
 |---|---|---|---|
@@ -32,8 +32,8 @@ All 13 listed tools have a route and are marked live in `src/data/youtube-data.t
 
 ## Technical Map
 
-- **Framework:** Next.js 14 App Router, React 18, TypeScript, Tailwind CSS, lucide-react.
-- **Product architecture:** 13 free, responsive tools in six categories. There is no login, database, or runtime holiday API; calculator calculations run client-side.
+- **Framework:** Next.js 16 App Router, React 19, TypeScript, Tailwind CSS, lucide-react.
+- **Product architecture:** 18 free, responsive tools in eight categories. There is no login, database, or runtime holiday API; calculator calculations run client-side.
 - **Entry points:** `src/app/page.tsx` (tool directory), `src/app/layout.tsx` (global shell and root SEO), `src/components/Header.tsx`, `src/components/Footer.tsx`.
 - **Quick games:** `src/components/StayAndPlay.tsx` provides persistent header access plus a dismissible invite after three minutes of visible-tab time. It includes Rock–Paper–Scissors, Tic-Tac-Toe, Mini Sudoku, Number Trail, and Word Guess; scores stay in memory and are not stored or sent. Rules live in `src/lib/quick-games.ts`.
 - **Catalog and shared types:** `src/data/youtube-data.ts` (`ALL_TOOLS`) is the source of truth; shared catalog types are in `src/types/index.ts` (`ToolDirectoryItem`).
@@ -84,3 +84,14 @@ All 13 listed tools have a route and are marked live in `src/data/youtube-data.t
 - Preserve the Next.js App Router and existing project patterns; check the catalog and nearby types before adding abstractions or duplicating metadata.
 - Validate changes with `npm test` and `npm run build`. Use Vitest and colocate tests as `*.test.ts` beside calculator logic in `src/lib`.
 - The production canonical domain is currently set in `src/lib/site.ts` to `https://tool-calculators.com`. Confirm the final hostname and HTTPS redirect before launch, then verify the deployed sitemap in Google Search Console.
+
+## Update 2026-10-04: growth and monetization pass
+
+Read `LAUNCH_PLAYBOOK.md` first. This supersedes the "Revenue Status: Not Activated" and some Guardrails above:
+
+- **New tools:** mortgage-payment, compound-interest, percentage, profit-margin, BMI (logic in `src/lib/*-calculator.ts` with tests; shared maths in `src/lib/finance-math.ts`). New categories: `Personal Finance`, `Everyday Math`. Category hub pages live at `/category/<slug>` (`src/data/categories.ts`).
+- **Shared tool layout:** `src/app/tools/layout.tsx` renders `ToolExtras` under every calculator (share bar, method/example/tips from `src/data/tool-content.ts`, FAQ + FAQPage schema when the page has none, resources, ad slot, related tools, WebApplication/Breadcrumb schema). Do not add `RelatedTools` or full `ToolStructuredData` to individual pages; pass `faqs` only.
+- **When adding a tool:** catalog entry, route page + `layout.tsx` (metadata) + `opengraph-image.tsx` (copy any existing one), a `TOOL_CONTENT` entry, and tests. Use `CalcKit` and `useUrlState` for shareable inputs.
+- **Monetization is env-driven and consent-gated** (`src/lib/site.ts`, `ConsentBanner`, `ThirdPartyScripts`, `AdPlaceholder`). With no env vars nothing third-party loads and no banner shows. Affiliate links are plain until a `trackedUrl` is set in `src/data/affiliates.ts`; only then are they labelled and marked `rel="sponsored"`.
+- The owner has explicitly asked for a revenue-focused site, so ads/affiliates/analytics via the existing consent flow are in scope. Still no login, paywalls, backend or database, and keep the estimate disclaimers and the "no guaranteed/accurate/official" copy rule.
+- `src.zip` in the repo root is a stale archive and can be deleted.

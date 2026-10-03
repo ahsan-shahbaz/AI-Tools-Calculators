@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import AdPlaceholder from '@/components/AdPlaceholder';
 import ToolStructuredData, { FaqItem } from '@/components/ToolStructuredData';
-import RelatedTools from '@/components/RelatedTools';
 import { calculatePatreonEarnings } from '@/lib/patreon-calculator';
 
 function formatUsd(amount: number): string {
@@ -255,7 +254,6 @@ export default function PatreonEarningsEstimator() {
         </section>
 
         {/* Contextual internal links for SEO and discovery */}
-        <RelatedTools />
 
       </div>
     </div>

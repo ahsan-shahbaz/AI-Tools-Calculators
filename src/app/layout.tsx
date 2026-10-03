@@ -3,6 +3,8 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StayAndPlay from '@/components/StayAndPlay';
+import ConsentBanner from '@/components/ConsentBanner';
+import ThirdPartyScripts from '@/components/ThirdPartyScripts';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { SITE_URL } from '@/lib/site';
 
@@ -18,13 +20,22 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Free Online Calculators for Creators & Businesses | ToolCalculators',
-    template: '%s | ToolCalculators — Free Online Tools',
+    default: 'Free Online Calculators: Mortgage, Savings, Business & Creator Tools | ToolCalculators',
+    template: '%s | ToolCalculators',
   },
   description:
-    'Free online calculators for creator earnings, freelance rates, ecommerce profit, YouTube RPM, TikTok brand deals, SEO, developer tools, and everyday planning. Instant results, no account required.',
+    'Free online calculators for mortgage payments, compound interest, freelance rates, profit margins, YouTube earnings, BMI and more. Instant results, clear assumptions, no sign-up.',
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+    : undefined,
+  applicationName: 'ToolCalculators',
   keywords: [
     'free online calculators',
+    'mortgage payment calculator',
+    'compound interest calculator',
+    'percentage calculator',
+    'profit margin calculator',
+    'bmi calculator',
     'youtube money calculator',
     'youtube rpm calculator',
     'youtube earnings estimator',
@@ -42,19 +53,18 @@ export const metadata: Metadata = {
   authors: [{ name: 'ToolCalculators' }],
   alternates: { canonical: '/' },
   robots: { index: true, follow: true },
+  // The og:image and twitter:image come from app/opengraph-image.tsx.
   openGraph: {
-    title: 'Free Online Calculators for Creators & Businesses | ToolCalculators',
-    description: 'Free, practical calculators for creators, businesses, developers, and everyday planning. Instant results, no account.',
+    title: 'Free Online Calculators for Money, Business & Creators | ToolCalculators',
+    description: 'Free, practical calculators with clear assumptions. Instant results, private, no sign-up.',
     type: 'website',
     siteName: 'ToolCalculators',
     url: '/',
-    images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: 'ToolCalculators — Free Online Calculators' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Free Online Calculators | ToolCalculators',
-    description: 'Practical free calculators for creators, businesses, developers, and everyday planning.',
-    images: [`${SITE_URL}/og-image.png`],
+    description: 'Practical free calculators for money, business, creators and everyday decisions.',
   },
 };
 
@@ -64,6 +74,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        />
         {/* Apply the saved palette before paint. */}
         <script
           dangerouslySetInnerHTML={{
@@ -94,6 +108,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'ToolCalculators',
+              url: SITE_URL,
+              logo: `${SITE_URL}/apple-icon`,
+            }),
+          }}
+        />
       </head>
       <body className="flex flex-col min-h-screen antialiased">
         <a href="#main-content" className="skip-nav">Skip to main content</a>
@@ -105,6 +131,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
             <Footer />
           </StayAndPlay>
+          <ConsentBanner />
+          <ThirdPartyScripts />
         </ThemeProvider>
       </body>
     </html>

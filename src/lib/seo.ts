@@ -9,20 +9,21 @@ export function createToolMetadata(slug: string): Metadata {
     return {};
   }
 
+  // Open Graph / Twitter images come from the opengraph-image file in each tool folder.
   return {
     title: tool.name,
     description: tool.description,
     alternates: { canonical: slug },
     openGraph: {
-      title: tool.name,
+      title: `${tool.name} | ${SITE_NAME}`,
       description: tool.description,
       url: `${SITE_URL}${slug}`,
       siteName: SITE_NAME,
       type: 'website',
     },
     twitter: {
-      card: 'summary',
-      title: tool.name,
+      card: 'summary_large_image',
+      title: `${tool.name} | ${SITE_NAME}`,
       description: tool.description,
     },
   };

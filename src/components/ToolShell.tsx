@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
 import ToolStructuredData, { FaqItem } from './ToolStructuredData';
-import RelatedTools from './RelatedTools';
 
 interface Crumb {
   label: string;
@@ -113,8 +112,6 @@ export default function ToolShell({
         {/* Tool content */}
         {children}
 
-        {/* Cross-links to other calculators — same category first */}
-        <RelatedTools />
 
       </div>
     </div>

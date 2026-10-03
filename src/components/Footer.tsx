@@ -1,44 +1,34 @@
 import React from 'react';
 import Link from 'next/link';
 import { Sparkles, ArrowUpRight } from 'lucide-react';
+import { ALL_TOOLS } from '@/data/youtube-data';
+import { CATEGORIES } from '@/data/categories';
+import CookieSettings from './CookieSettings';
+
+const POPULAR = [
+  '/tools/mortgage-payment-calculator',
+  '/tools/compound-interest-calculator',
+  '/tools/percentage-calculator',
+  '/tools/freelance-rate-calculator',
+  '/tools/youtube-money-calculator',
+  '/tools/bmi-calculator',
+];
 
 const NAV_COLS = [
   {
-    heading: 'Creator & Social',
-    links: [
-      { href: '/tools/youtube-money-calculator',         label: 'YouTube Money & RPM Calculator' },
-      { href: '/tools/youtube-shorts-earnings-estimator', label: 'YouTube Shorts Earnings Estimator' },
-      { href: '/tools/tiktok-brand-deal-rate-calculator', label: 'TikTok Brand Deal Rate Calculator' },
-      { href: '/tools/instagram-engagement-rate-tool',   label: 'Instagram Engagement Rate Tool' },
-      { href: '/tools/patreon-earnings-estimator',        label: 'Patreon Earnings Estimator' },
-    ],
+    heading: 'Popular calculators',
+    links: POPULAR.map((slug) => ({ href: slug, label: ALL_TOOLS.find((t) => t.slug === slug)?.name ?? slug })),
   },
   {
-    heading: 'Business & Finance',
-    links: [
-      { href: '/tools/freelance-rate-calculator',         label: 'Freelance Rate & Quote Generator' },
-      { href: '/tools/break-even-roas-calculator',        label: 'Break-Even ROAS & Profit Calc' },
-      { href: '/tools/amazon-fba-net-profit-calculator',  label: 'Amazon FBA Net Profit Calculator' },
-      { href: '/tools/salary-to-hourly-take-home',        label: 'Salary to Hourly Take-Home' },
-    ],
+    heading: 'Categories',
+    links: CATEGORIES.map((c) => ({ href: `/category/${c.slug}`, label: c.heading.replace(/^Free /, '') })),
   },
   {
-    heading: 'Developer Tools',
+    heading: 'Company',
     links: [
-      { href: '/tools/regex-generator',         label: 'Plain English → Regex Generator' },
-      { href: '/tools/schema-markup-generator', label: 'JSON-LD Schema Generator' },
-    ],
-  },
-  {
-    heading: 'Health & Lifestyle',
-    links: [
-      { href: '/tools/macro-tdee-calculator', label: 'Macro & TDEE Calorie Planner' },
-    ],
-  },
-  {
-    heading: 'Date & Time',
-    links: [
-      { href: '/tools/date-time-calculators', label: 'Date & Time Calculators' },
+      { href: '/about', label: 'About' },
+      { href: '/contact', label: 'Contact' },
+      { href: '/#faq', label: 'FAQ' },
     ],
   },
   {
@@ -64,7 +54,7 @@ export default function Footer() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10">
 
           {/* Brand */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-1 space-y-4">
@@ -96,6 +86,7 @@ export default function Footer() {
             <div className="text-[11px]" style={{ color: 'var(--text-3)' }}>
               © {new Date().getFullYear()} ToolCalculators.
               <br />All rights reserved.
+              <CookieSettings />
             </div>
           </div>
 
