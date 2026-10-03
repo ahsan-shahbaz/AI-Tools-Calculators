@@ -85,16 +85,19 @@ export default function Header() {
           </Link>
 
           {/* ── Desktop nav ───────────────────────────── */}
-          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-1 flex-1 justify-center">
+          <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-1 flex-1 justify-center">
             {[
-              { href: '/#categories', label: 'Browse Tools', icon: <Calculator className="w-3.5 h-3.5" /> },
-              { href: '/tools/youtube-money-calculator', label: 'YouTube RPM', icon: <Flame className="w-3.5 h-3.5" style={{ color: 'var(--accent-1)' }} /> },
-              { href: '/#about', label: 'About', icon: null },
+              { href: '/#categories', label: 'All Calculators', icon: <Calculator className="w-3.5 h-3.5" />, xl: false },
+              { href: '/tools/mortgage-payment-calculator', label: 'Mortgage', icon: null, xl: false },
+              { href: '/tools/compound-interest-calculator', label: 'Compound Interest', icon: null, xl: false },
+              { href: '/tools/freelance-rate-calculator', label: 'Freelance Rate', icon: null, xl: false },
+              { href: '/tools/youtube-money-calculator', label: "YouTube RPM", xl: true, icon: <Flame className="w-3.5 h-3.5" style={{ color: "var(--accent-1)" }} /> },
+              { href: '/about', label: 'About', icon: null, xl: false },
             ].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+                className={`items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${item.xl ? "hidden xl:flex" : "flex"}`}
                 style={{ color: 'var(--text-2)' }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text-1)'; (e.currentTarget as HTMLElement).style.background = 'var(--bg-card)'; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'var(--text-2)'; (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
@@ -199,11 +202,11 @@ export default function Header() {
 
             {/* CTA */}
             <Link
-              href="/tools/youtube-money-calculator"
+              href="/tools/mortgage-payment-calculator"
               className="btn-primary header-cta text-xs px-3 py-2"
             >
               <Zap className="w-3.5 h-3.5" />
-              <span className="font-bold">Try a Tool</span>
+              <span className="font-bold">Popular Tool</span>
             </Link>
 
             {/* Mobile burger */}
@@ -212,7 +215,7 @@ export default function Header() {
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-lg transition-all"
+              className="lg:hidden p-2 rounded-lg transition-all"
               style={{ color: 'var(--text-2)', background: mobileOpen ? 'var(--bg-card)' : 'transparent' }}
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -226,7 +229,7 @@ export default function Header() {
         <nav
           id="mobile-nav"
           aria-label="Mobile navigation"
-          className="md:hidden border-b px-4 pt-2 pb-5 space-y-1 backdrop-blur-2xl"
+          className="lg:hidden border-b px-4 pt-2 pb-5 space-y-1 backdrop-blur-2xl"
           style={{
             backgroundColor: 'var(--bg-surface)',
             borderBottomColor: 'var(--border)',
@@ -235,7 +238,9 @@ export default function Header() {
           {[
             { href: '/#categories', label: '🧮 Browse all calculators' },
             { href: '/tools/youtube-money-calculator', label: '🔥 YouTube Money & RPM Calculator', accent: true },
-            { href: '/#about', label: 'ℹ️ About' },
+            { href: '/tools/mortgage-payment-calculator', label: '🏠 Mortgage Payment Calculator' },
+            { href: '/tools/compound-interest-calculator', label: '📈 Compound Interest Calculator' },
+            { href: '/about', label: 'ℹ️ About' },
           ].map((item) => (
             <Link
               key={item.href}
@@ -283,12 +288,12 @@ export default function Header() {
 
           <div className="pt-2">
             <Link
-              href="/tools/youtube-money-calculator"
+              href="/tools/mortgage-payment-calculator"
               onClick={() => setMobileOpen(false)}
               className="btn-primary w-full justify-center text-sm py-3"
             >
               <Zap className="w-4 h-4" />
-              Launch YouTube Calculator
+              Open Mortgage Calculator
             </Link>
           </div>
         </nav>

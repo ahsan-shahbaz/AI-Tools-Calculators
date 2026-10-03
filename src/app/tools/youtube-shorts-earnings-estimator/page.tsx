@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import AdPlaceholder from '@/components/AdPlaceholder';
 import ToolStructuredData, { FaqItem } from '@/components/ToolStructuredData';
-import RelatedTools from '@/components/RelatedTools';
 import { calculateYouTubeShortsEarnings } from '@/lib/youtube-shorts-calculator';
 
 const SHORTS_FAQS: FaqItem[] = [
@@ -277,7 +276,6 @@ export default function YouTubeShortsEarningsEstimator() {
         </section>
 
         {/* Contextual internal links for SEO and discovery */}
-        <RelatedTools />
 
       </div>
     </div>

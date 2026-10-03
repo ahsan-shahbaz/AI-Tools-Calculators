@@ -48,12 +48,22 @@ export interface AIStrategyResponse {
   rpmBoostTactics: string[];
 }
 
+export type ToolCategory =
+  | 'Social Media'
+  | 'Finance & Business'
+  | 'Personal Finance'
+  | 'Everyday Math'
+  | 'Developer'
+  | 'SEO & Webmaster'
+  | 'Lifestyle'
+  | 'Date & Time';
+
 export interface ToolDirectoryItem {
   id: string;
   name: string;
   slug: string;
   description: string;
-  category: 'Social Media' | 'Finance & Business' | 'Developer' | 'SEO & Webmaster' | 'Lifestyle' | 'Date & Time';
+  category: ToolCategory;
   icon: string;
   badge?: string;
   isLive: boolean;
